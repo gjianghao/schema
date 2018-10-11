@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:beans="http://www.springframework.org/schema/beans"
+            xmlns:tool="http://www.springframework.org/schema/tool"
+            xmlns="https://github.com/gjianghao/schema"
+            targetNamespace="https://github.com/gjianghao/schema">
+
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.springframework.org/schema/beans" schemaLocation="http://www.springframework.org/schema/beans/spring-beans.xsd"/>
+    <xsd:import namespace="http://www.springframework.org/schema/tool"/>
+
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[ Namespace support for the rpc services provided by rpc framework. ]]></xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:element name="application">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="beans:identifiedType">
+                    <xsd:attribute name="name" type="xsd:string" use="required">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[ application name ]]>application name</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                    <xsd:attribute name="location" type="xsd:string" use="required">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[ zk path ]]></xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="provider">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="beans:identifiedType">
+                    <xsd:attribute name="loadbalance" use="required" default="random" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[ provider loadbalance ]]></xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="consumer">
+    </xsd:element>
+
+    <xsd:element name="service">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension  base="beans:identifiedType">
+                    <xsd:attribute name="ref" type="xsd:string" use="required">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[ reference bean ]]></xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                    <xsd:attribute name="interface" type="xsd:string" use="required">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[ interface class full name for provider ]]></xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="reference">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="beans:identifiedType">
+                    <xsd:attribute name="interface" type="xsd:string" use="required">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[ interface class full name for consumer ]]></xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                    <xsd:attribute name="timeout" type="xsd:string" default="500">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[ consumer timeout ]]></xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
