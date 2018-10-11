@@ -36,7 +36,7 @@
         <xsd:complexType>
             <xsd:complexContent>
                 <xsd:extension base="beans:identifiedType">
-                    <xsd:attribute name="loadbalance" use="required" default="random" type="xsd:string">
+                    <xsd:attribute name="loadbalance" default="random" type="xsd:string">
                         <xsd:annotation>
                             <xsd:documentation><![CDATA[ provider loadbalance ]]></xsd:documentation>
                         </xsd:annotation>
